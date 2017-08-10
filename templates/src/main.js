@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
-import { browserHistory, hashHistory, Router } from 'react-router'
-import App from './app';
+import { hashHistory, Router } from 'react-router';
 import AppStore from './stores/appStore';
-import routes from './routes'
+import routes from './routes';
 
 const appStore = new AppStore();
 const uiStore = appStore.uiStore;

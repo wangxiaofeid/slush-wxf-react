@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Link } from 'react-router';
 import { Spin } from 'antd';
-import cn from 'classnames';
 
 import 'styles';
 

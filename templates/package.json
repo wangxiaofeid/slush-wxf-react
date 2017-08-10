@@ -1,8 +1,11 @@
 {
-  "name": "xx",
-  "version": "v1.0.0",
-  "description": "xx",
-  "author": "xx",
+  "name": "<%= appName %>",
+  "version": "<%= appVersion %>",
+  "description": "<%= appDescription %>",
+  "author": {
+      "name": "<%= authorName %>",
+      "email": "<%= authorEmail %>"
+  },
   "scripts": {
     "release": "webpack",
     "release:watch": "webpack --watch",

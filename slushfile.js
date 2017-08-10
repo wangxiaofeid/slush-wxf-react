@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     _ = require('underscore.string'),
     inquirer = require('inquirer'),
-    path = require('path');
+    path = require('path'),
+    debug = require('gulp-debug');;
 
 function format(string) {
     var username = string.toLowerCase();
@@ -56,32 +57,44 @@ gulp.task('default', function (done) {
         name: 'authorName',
         message: 'What is the author name?',
         default: defaults.authorName
-    }, {
+      }, {
+        name: 'authorEmail',
+        message: 'What is the author email?',
+        default: defaults.authorEmail
+      }, {
+        name: 'userName',
+        message: 'What is the github username?',
+        default: defaults.userName
+      }, {
         type: 'confirm',
         name: 'moveon',
         message: 'Continue?'
-    }];
+      }]
     //Ask
-    inquirer.prompt(prompts,
-        function (answers) {
-            if (!answers.moveon) {
-                return done();
-            }
-            answers.appNameSlug = _.slugify(answers.appName);
-            gulp.src(__dirname + '/templates/**')
-                .pipe(template(answers))
-                .pipe(rename(function (file) {
-                    if (file.basename[0] === '_') {
-                        file.basename = '.' + file.basename.slice(1);
-                    } else if (file.basename[0] === '@') {
-						file.basename = file.basename.slice(1);
-					}
-                }))
-                .pipe(conflict('./'))
-                .pipe(gulp.dest('./'))
-                .pipe(install())
-                .on('end', function () {
-                    done();
-                });
-        });
+    inquirer.prompt(prompts).then(function (answers) {
+      if (!answers.moveon) {
+        return done();
+      }
+      answers.appNameSlug = _.underscored(answers.appName);
+      console.log(answers);
+      gulp.src(__dirname + '/templates/**')
+      .pipe(debug())
+      .pipe(template(answers))
+      .pipe(rename(function (file) {
+        if (file.basename[0] === '_') {
+          file.basename = '.' + file.basename.slice(1);
+        }
+      }))
+      .pipe(conflict('./'))
+      .pipe(gulp.dest('./'))
+      .pipe(install({
+        commands: {
+          'package.json': 'yarn'
+        },
+        yarn: ['--extra', '--args', '--here']
+      }))
+      .on('end', function () {
+        done();
+      }).resume();;
+    });
 });

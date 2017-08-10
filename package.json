@@ -1,7 +1,7 @@
 {
     "name": "slush-wxf-react",
     "description": "react项目模板.",
-    "version": "0.1.0",
+    "version": "0.1.5",
     "homepage": "https://github.com/wangxiaofeid/slush-wxf-react",
     "author": {
         "name": "xiaofei.wang"
@@ -24,15 +24,20 @@
         "pub": "npm publish"
     },
     "dependencies": {
-        "slush": ">=1.0.0",
         "gulp": "^3.6.2",
-        "gulp-template": "^0.1.1",
-        "gulp-install": "^0.1.4",
-        "gulp-conflict": "^0.1.1",
+        "gulp-conflict": "^0.4.0",
+        "gulp-debug": "^3.1.0",
+        "gulp-install": "^1.1.0",
         "gulp-rename": "^1.2.0",
-        "inquirer": "^0.8.0",
+        "gulp-shell": "^0.6.3",
+        "gulp-template": "^4.0.0",
         "iniparser": "^1.0.5",
+        "inquirer": "^3.2.1",
+        "slush": ">=1.0.0",
         "underscore.string": "^3.3.4"
+    },
+    "devDependencies": {
+        "gulp-debug": "^2.1.2"
     },
     "keywords": [
         "slushgenerator",
