@@ -95,6 +95,6 @@ gulp.task('default', function (done) {
       }))
       .on('end', function () {
         done();
-      }).resume();;
+      }).resume();
     });
 });
