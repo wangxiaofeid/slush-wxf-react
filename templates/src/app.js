@@ -1,27 +1,13 @@
-import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
-import { Spin } from 'antd';
+import React, { Component } from "react";
+import { NavLink } from 'react-router-dom'
+import Router from "./router";
 
-import 'styles';
-
-@inject('appStore', 'uiStore')
-@observer
 export default class App extends Component {
   render() {
-    const { uiStore, appStore } = this.props;
-    const { loading } = uiStore;
-    return (
-      <Spin tip="加载中..." spinning={loading}>
-        <div className="main">
-          {
-            this.props.children||"空页面"
-          }
-        </div>
-      </Spin>
-    );
-  }
-
-  componentDidMount() {
-    this.props.uiStore.setLoading(false);
+    return <div>
+      <NavLink to='/home' activeClassName="selected">home</NavLink>
+      <NavLink to='/home2' activeClassName="selected">home2</NavLink>
+      <Router />
+    </div>
   }
 }
