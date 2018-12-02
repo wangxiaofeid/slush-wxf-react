@@ -9,7 +9,6 @@ export default class Home extends Component {
       <div className="botton" onClick={() => {
         this.props.appStore.plus()
       }}>{this.props.appStore.num}</div>
-      <Other />
     </div>
   }
 }
